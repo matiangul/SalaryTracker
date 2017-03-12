@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context="pl.angulski.salarytracker.MainActivity">
+        tools:context="pl.angulski.salarytracker.ui.MainActivity">
 
     <include layout="@layout/content_main"/>
 

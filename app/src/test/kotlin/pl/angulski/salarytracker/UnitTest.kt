@@ -15,3 +15,6 @@ class UnitTest {
         assertEquals(4, (2 + 2).toLong())
     }
 }
+
+//TODO: try kotlintest
+//TODO: run with RobolectricGradleTestRunner like in tropos (need to override kotlintest base class)

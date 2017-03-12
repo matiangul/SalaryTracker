@@ -1,8 +1,9 @@
 package pl.angulski.salarytracker.salary
 
 /**
- * Created by Mateusz Angulski <mateusz.angulski@assertis.co.uk>
+ * Created by Mateusz Angulski <mateusz@angulski.pl>
  *
- * @param currencyCode the ISO 4217 code of the currency
+ * @param money money that user earned
+ * @param day day when user received her money
  */
-data class Salary(val currencyCode: String)
+data class Salary(val money: Money, val day: Day)
