@@ -5,9 +5,4 @@ import android.app.Application
 /**
  * Created by Mateusz Angulski <mateusz.angulski@assertis.co.uk>
  */
-class App : Application() {
-
-    override fun onCreate() {
-        super.onCreate()
-    }
-}
+class App : Application()

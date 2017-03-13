@@ -8,12 +8,15 @@ import pl.angulski.salarytracker.R
 
 class MainActivity : AppCompatActivity(), SalaryView {
 
-    //move to dagger
-    val salaryController: SalaryController = SalaryController()
-    val salaryPresenter: SalaryPresenter = SalaryPresenter(this)
-
-    //view binder thing from tropos
-    override var viewState: SalaryViewState = SalaryViewState.EmptySalaryViewState
+    override var viewState: SalaryViewState by ViewBinder {
+        when (it) {
+            is SalaryViewState.EmptySalaryViewState -> {
+                Snackbar.make(findViewById(R.id.fab),
+                        "Empty salary view it is", Snackbar.LENGTH_LONG)
+                        .show()
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
