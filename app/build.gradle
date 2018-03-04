@@ -8,7 +8,7 @@ android {
     buildToolsVersion "26.0.2"
 
     defaultConfig {
-        applicationId "pl.angulski.salarytracker"
+        applicationId "pl.angulski.salarytracker.app"
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
