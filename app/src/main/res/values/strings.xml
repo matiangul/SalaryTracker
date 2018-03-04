@@ -1,3 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Salary tracker</string>
+    <string name="app_name">Salary</string>
+    <string name="price_hint">Money</string>
+    <string name="salary_add_header">How much did you earn today?</string>
+    <string name="salary_add_btn">Add</string>
 </resources>

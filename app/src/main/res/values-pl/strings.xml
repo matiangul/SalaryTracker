@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wypłata</string>
+    <string name="price_hint">Kasiuta</string>
+    <string name="salary_add_btn">Dodaj</string>
+    <string name="salary_add_header">Ile dzisiaj zarobiłaś?</string>
+</resources>

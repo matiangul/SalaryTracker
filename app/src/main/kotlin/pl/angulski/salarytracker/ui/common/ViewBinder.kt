@@ -1,4 +1,4 @@
-package pl.angulski.salarytracker.ui
+package pl.angulski.salarytracker.ui.common
 
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
@@ -10,6 +10,7 @@ import kotlin.reflect.KProperty
 class ViewBinder<M>(val function: (M) -> Unit) : ReadWriteProperty<Any, M> {
     private var value: M? = null
 
+    @Suppress("UNCHECKED_CAST")
     override fun getValue(thisRef: Any, property: KProperty<*>): M {
         return value as M
     }
