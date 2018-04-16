@@ -8,3 +8,7 @@ import pl.angulski.salarytracker.app.R
 fun AppCompatActivity.changeFragment(fragment: Fragment, cleanStack: Boolean = false) {
     baseChangeFragment(fragment, R.id.view_container, cleanStack)
 }
+
+fun AppCompatActivity.visibleFragment(): Fragment? {
+    return supportFragmentManager.findFragmentById(R.id.view_container)
+}

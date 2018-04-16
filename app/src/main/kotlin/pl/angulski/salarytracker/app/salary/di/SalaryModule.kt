@@ -9,6 +9,7 @@ import javax.inject.Singleton
 
 @Module
 class SalaryModule {
+
     @Provides
     @Singleton
     fun provideSalaryRepository(ctx: Context): SalaryRepository = InMemorySalaryRepository()

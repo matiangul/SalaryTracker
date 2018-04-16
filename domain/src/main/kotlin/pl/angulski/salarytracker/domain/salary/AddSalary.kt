@@ -3,10 +3,14 @@ package pl.angulski.salarytracker.domain.salary
 /**
  * @author Mateusz Angulski <mateusz@angulski.pl>
  */
-class AddSalary(val repository: SalaryRepository,
-                val presenter: AddSalaryPresenter
-): AddSalaryUseCase {
+interface AddSalaryUseCase {
+    fun execute(amountCents: Int, currencyCode: String, day: Int, month: Int, year: Int)
+}
 
+class AddSalary(
+    private val repository: SalaryRepository,
+    private val presenter: AddSalaryPresenter?
+): AddSalaryUseCase {
     override fun execute(amountCents: Int, currencyCode: String, day: Int, month: Int, year: Int) {
         val salary = Salary(
             Money(
@@ -15,14 +19,23 @@ class AddSalary(val repository: SalaryRepository,
             ), Day(day, month, year)
         )
         repository.add(salary)
-        presenter.onSalaryAdded(salary)
+        presenter?.onSalaryAdded(salary)
     }
 }
 
-interface AddSalaryPresenter {
-    fun onSalaryAdded(salary: Salary)
+// TODO: change presenter to interface
+
+class AddSalaryPresenter(val view: AddSalaryView) {
+    fun onSalaryAdded(salary: Salary) {
+        view.addViewState = AddSalaryViewState.NewSalary(salary)
+    }
 }
 
-interface AddSalaryUseCase {
-    fun execute(amountCents: Int, currencyCode: String, day: Int, month: Int, year: Int)
+interface AddSalaryView {
+    var addViewState: AddSalaryViewState
+}
+
+sealed class AddSalaryViewState {
+    data class NewSalary(val salary: Salary) : AddSalaryViewState()
+    data class Failure(val failure: Exception) : AddSalaryViewState()
 }

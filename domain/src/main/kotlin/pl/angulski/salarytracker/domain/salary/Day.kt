@@ -7,4 +7,4 @@ package pl.angulski.salarytracker.domain.salary
  * @param month one of 1..12
  * @param year year of our era
  */
-data class Day(val day: Int, val month: Int, val year: Int)
+data class Day(private val day: Int, private val month: Int, private val year: Int)

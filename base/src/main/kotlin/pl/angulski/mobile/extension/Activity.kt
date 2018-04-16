@@ -1,11 +1,15 @@
 package pl.angulski.mobile.extension
 
 import android.support.annotation.IdRes
+import android.support.v4.app.DialogFragment
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import pl.angulski.mobile.R
 
+/**
+ * @author Mateusz Angulski <mateusz@angulski.pl>
+ */
 fun AppCompatActivity.changeFragment(
     fragment: Fragment,
     @IdRes containerViewId: Int,
@@ -39,4 +43,10 @@ fun AppCompatActivity.onBackPressedWithFragments() {
     } else {
         finish()
     }
+}
+
+fun AppCompatActivity.showDialog(dialog: DialogFragment) {
+    dialog.show(
+        supportFragmentManager, dialog::class.java.canonicalName
+    )
 }

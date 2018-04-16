@@ -1,4 +1,4 @@
-package pl.angulski.salarytracker.app.salary.ui
+package pl.angulski.salarytracker.domain.salary
 
 import com.nhaarman.mockito_kotlin.isA
 import com.nhaarman.mockito_kotlin.reset
@@ -9,18 +9,15 @@ import org.junit.runner.RunWith
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
-import pl.angulski.salarytracker.domain.salary.Day
-import pl.angulski.salarytracker.domain.salary.Money
-import pl.angulski.salarytracker.domain.salary.Salary
 
 @RunWith(MockitoJUnitRunner::class)
 class SalaryPresenterTest {
 
     @InjectMocks
-    lateinit var presenter: SalaryPresenter
+    lateinit var presenter: AddSalaryPresenter
 
     @Mock
-    lateinit var view: SalaryView
+    lateinit var view: AddSalaryView
 
     @After
     fun resetMockedDependencies() {
@@ -38,13 +35,6 @@ class SalaryPresenterTest {
             )
         )
 
-        verify(view).viewState = isA<SalaryViewState.NewSalary>()
-    }
-
-    @Test
-    fun onSalariesGet_changeViewStateToSalaryList() {
-        presenter.onSalariesGet(emptyList())
-
-        verify(view).viewState = isA<SalaryViewState.SalaryList>()
+        verify(view).addViewState = isA<AddSalaryViewState.NewSalary>()
     }
 }

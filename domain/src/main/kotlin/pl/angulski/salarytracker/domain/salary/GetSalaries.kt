@@ -3,19 +3,30 @@ package pl.angulski.salarytracker.domain.salary
 /**
  * @author Mateusz Angulski <mateusz@angulski.pl>
  */
-class GetSalaries(val repository: SalaryRepository,
-                  val presenter: GetSalariesPresenter
-): GetSalariesUseCase {
+interface GetSalariesUseCase {
+    fun execute()
+}
 
+class GetSalaries(
+    private val repository: SalaryRepository,
+    private val presenter: GetSalariesPresenter
+) : GetSalariesUseCase {
     override fun execute() {
         presenter.onSalariesGet(repository.getAll())
     }
 }
 
-interface GetSalariesPresenter {
-    fun onSalariesGet(salaries: List<Salary>)
+class GetSalariesPresenter(val view: ListSalaryView) {
+    fun onSalariesGet(salaries: List<Salary>) {
+        view.listViewState = ListSalaryViewState.SalaryList(salaries)
+    }
 }
 
-interface GetSalariesUseCase {
-    fun execute(): Unit
+interface ListSalaryView {
+    var listViewState: ListSalaryViewState
+}
+
+sealed class ListSalaryViewState {
+    data class SalaryList(val salaries: List<Salary>) : ListSalaryViewState()
+    data class Failure(val failure: Exception) : ListSalaryViewState()
 }

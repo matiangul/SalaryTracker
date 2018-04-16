@@ -1,28 +1,23 @@
 package pl.angulski.salarytracker.app.di
 
 import dagger.Component
-import dagger.android.AndroidInjectionModule
-import javax.inject.Singleton
-import dagger.BindsInstance
 import pl.angulski.salarytracker.app.App
 import pl.angulski.salarytracker.app.salary.di.SalaryModule
+import dagger.android.AndroidInjector
+import dagger.android.support.AndroidSupportInjectionModule
+import javax.inject.Singleton
 
 @Singleton
 @Component(
     modules = [
-        AndroidInjectionModule::class,
+        AndroidSupportInjectionModule::class,
         AppModule::class,
         SalaryModule::class,
-        ActivitiesModule::class
+        ViewsModule::class
     ]
 )
-interface AppComponent {
-    @Component.Builder
-    interface Builder {
-        @BindsInstance
-        fun application(application: App): Builder
+interface AppComponent: AndroidInjector<App> {
 
-        fun build(): AppComponent
-    }
-    fun inject(app: App)
+    @Component.Builder
+    abstract class Builder: AndroidInjector.Builder<App>()
 }
