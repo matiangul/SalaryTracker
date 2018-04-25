@@ -9,12 +9,12 @@ class AddSalaryController(
     private val addSalary: AddSalaryUseCase,
     private val resources: Resources
 ) {
-    fun add(amountCents: Int) {
+    fun add(amount: Int) {
         val currency = Currency.getInstance(resources.configuration.currentLocale())
         val today = Calendar.getInstance(resources.configuration.currentLocale())
 
         addSalary.execute(
-            amountCents, currency.currencyCode, today.get(Calendar.DAY_OF_MONTH),
+            amount * 100, currency.currencyCode, today.get(Calendar.DAY_OF_MONTH),
             today.get(Calendar.MONTH), today.get(Calendar.YEAR)
         )
     }
