@@ -7,9 +7,6 @@ import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import pl.angulski.mobile.R
 
-/**
- * @author Mateusz Angulski <mateusz@angulski.pl>
- */
 fun AppCompatActivity.changeFragment(
     fragment: Fragment,
     @IdRes containerViewId: Int,

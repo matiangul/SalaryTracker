@@ -3,9 +3,6 @@ package pl.angulski.salarytracker.app.salary.ui.list
 import pl.angulski.mobile.view.recycler.ViewType
 import pl.angulski.salarytracker.domain.salary.Salary
 
-/**
- * @author Mateusz Angulski <mateusz@angulski.pl>
- */
 enum class ViewTypes {
     LOADING, SALARIES
 }

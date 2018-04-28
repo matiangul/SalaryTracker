@@ -1,18 +1,25 @@
 package pl.angulski.salarytracker.domain.salary
 
-/**
- * @author Mateusz Angulski <mateusz@angulski.pl>
- */
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.Job
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.launch
+import kotlin.coroutines.experimental.CoroutineContext
+
 interface GetSalariesUseCase {
     fun execute()
 }
 
 class GetSalaries(
     private val repository: SalaryRepository,
-    private val presenter: GetSalariesPresenter
+    private val presenter: GetSalariesPresenter,
+    private val presenterContext: CoroutineContext,
+    private val parentJob: Job? = null
 ) : GetSalariesUseCase {
+
     override fun execute() {
-        presenter.onSalariesGet(repository.getAll())
+        val result = async(CommonPool, parent = parentJob) { repository.getAll() }
+        launch(presenterContext, parent = parentJob) { presenter.onSalariesGet(result.await()) }
     }
 }
 

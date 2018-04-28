@@ -8,9 +8,6 @@ import pl.angulski.mobile.view.recycler.ViewType
 import pl.angulski.mobile.view.recycler.ViewTypeDelegateAdapter
 import pl.angulski.salarytracker.app.R
 
-/**
- * @author Mateusz Angulski <mateusz@angulski.pl>
- */
 class SalariesDelegateAdapter: ViewTypeDelegateAdapter {
 
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
