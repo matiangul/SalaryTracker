@@ -29,10 +29,6 @@ android {
         test.java.srcDirs += 'src/test/kotlin'
         androidTest.java.srcDirs += 'src/androidTest/kotlin'
     }
-
-    kapt {
-        generateStubs = true
-    }
 }
 
 kotlin {
@@ -62,6 +58,10 @@ dependencies {
     implementation "com.android.support:recyclerview-v7:$support_version"
     implementation "com.android.support:support-vector-drawable:$support_version"
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+
+    //room
+    implementation "android.arch.persistence.room:runtime:1.0.0"
+    kapt "android.arch.persistence.room:compiler:1.0.0"
 
     //di
     compileOnly "javax.annotation:jsr250-api:1.0"
