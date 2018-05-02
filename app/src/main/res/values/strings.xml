@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Salary</string>
     <string name="price_hint">Money</string>
-    <string name="salary_add_header">How much did you earn today?</string>
     <string name="salary_add_btn">Add</string>
+    <string name="salary_add_header">How much did you earn today?</string>
+    <string name="settings_menu_title">Settings</string>
 </resources>
