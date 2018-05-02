@@ -1,5 +1,6 @@
 package pl.angulski.salarytracker.app
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.view.Menu
@@ -14,6 +15,7 @@ import pl.angulski.salarytracker.app.extension.changeFragment
 import pl.angulski.salarytracker.app.extension.visibleFragment
 import pl.angulski.salarytracker.app.salary.ui.AddSalaryDialogFragment
 import pl.angulski.salarytracker.app.salary.ui.SalaryListFragment
+import pl.angulski.salarytracker.app.settings.SettingsActivity
 import pl.angulski.salarytracker.domain.salary.AddSalaryView
 import pl.angulski.salarytracker.domain.salary.AddSalaryViewState
 
@@ -33,6 +35,7 @@ class MainActivity : DaggerAppCompatActivity(), AddSalaryView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(activity_main)
+        title = getString(R.string.app_name)
         if (savedInstanceState == null) {
             changeFragment(SalaryListFragment.newInstance())
         }
@@ -49,7 +52,7 @@ class MainActivity : DaggerAppCompatActivity(), AddSalaryView {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item?.itemId) {
             R.id.opt_menu_settings -> {
-                Snackbar.make(view_container, "Open settings", Snackbar.LENGTH_SHORT).show()
+                startActivity(Intent(this, SettingsActivity::class.java))
                 true
             }
             else -> super.onOptionsItemSelected(item)
