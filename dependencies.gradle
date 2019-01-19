@@ -1,0 +1,71 @@
+// I'm using _ syntax to easily distinct between gradle groovy keywords and our custom vars
+
+ext {
+    kotlin_ver = '1.3.11'
+    android_sdk_ver = 28
+    andoird_min_sdk_ver = 16
+    andoird_tools_ver = '28.0.3'
+    android_support_version = '28.0.0'
+    dagger_version = '2.13'
+    coroutines_ver = '1.1.0'
+    room_ver = '1.1.1'
+    junit_ver = '4.12'
+
+    instrumentation_runner = "android.support.test.runner.AndroidJUnitRunner"
+
+    build_plugins = [
+            android_gradle_plugin: "com.android.tools.build:gradle:3.3.0",
+            kotlin_gradle_plugin : "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_ver",
+    ]
+
+    project_modules = [
+            base  : project(':base'),
+            data  : project(':data'),
+            domain: project(':domain')
+    ]
+
+    kotlin_libs = [
+            stdlib            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_ver",
+            coroutines        : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_ver",
+            coroutines_android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_ver",
+    ]
+
+    support_libs = [
+            compat      : "com.android.support:appcompat-v7:$android_support_version",
+            design      : "com.android.support:design:$android_support_version",
+            support     : "com.android.support:support-v4:$android_support_version",
+            preference  : "com.android.support:preference-v7:$android_support_version",
+            recyclerview: "com.android.support:recyclerview-v7:$android_support_version",
+            vector      : "com.android.support:support-vector-drawable:$android_support_version",
+            constraint  : "com.android.support.constraint:constraint-layout:1.1.3",
+    ]
+
+    db_libs = [
+            room            : "android.arch.persistence.room:runtime:$room_ver",
+            room_annotations: "android.arch.persistence.room:compiler:$room_ver",
+    ]
+
+    di_libs = [
+            jsr250_annotations        : "javax.annotation:jsr250-api:1.0",
+            inject_annotations        : "javax.inject:javax.inject:1",
+            dagger_annotations        : "com.google.dagger:dagger-compiler:$dagger_version",
+            dagger_android_annotations:
+                    "com.google.dagger:dagger-android-processor:$dagger_version",
+            dagger                    : "com.google.dagger:dagger:$dagger_version",
+            dagger_android            : "com.google.dagger:dagger-android-support:$dagger_version"
+    ]
+
+    test_libs = [
+            junit         : "junit:junit:$junit_ver",
+            mockito       : "org.mockito:mockito-core:2.8.9",
+            mockito_kotlin: "com.nhaarman:mockito-kotlin:1.5.0",
+            kotlin_junit  : "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_ver",
+            kotlin_test   : "org.jetbrains.kotlin:kotlin-test:$kotlin_ver",
+            room_test     : "android.arch.persistence.room:testing:$room_ver",
+    ]
+
+    instrumentation_test_libs = [
+            runner  : "com.android.support.test:runner:1.0.2",
+            espresso: "com.android.support.test.espresso:espresso-core:3.0.2",
+    ]
+}
