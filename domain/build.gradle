@@ -1,23 +1,18 @@
 apply plugin: 'java'
 apply plugin: 'kotlin'
 
-sourceSets {
-    main.kotlin.srcDirs += 'src/main/kotlin'
-    test.kotlin.srcDirs += 'src/test/kotlin'
-}
-
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation kotlin_libs.stdlib
+    implementation kotlin_libs.coroutines
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.0"
+    compileOnly di_libs.jsr250_annotations
+    compileOnly di_libs.inject_annotations
 
-    compileOnly "javax.annotation:jsr250-api:1.0"
-    compileOnly "javax.inject:javax.inject:1"
-
-    testImplementation "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
-    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
-    testCompile        "com.nhaarman:mockito-kotlin:1.5.0"
+    testImplementation test_libs.junit
+    testImplementation test_libs.mockito
+    testImplementation test_libs.mockito_kotlin
+    testImplementation test_libs.kotlin_junit
+    testImplementation test_libs.kotlin_test
 }
 
 sourceCompatibility = "1.7"

@@ -1,19 +1,23 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    compileSdkVersion android_sdk_ver
+    buildToolsVersion andoird_tools_ver
 
     defaultConfig {
         applicationId "pl.angulski.salarytracker.app"
-        minSdkVersion 16
-        targetSdkVersion 28
+
+        minSdkVersion andoird_min_sdk_ver
+        targetSdkVersion android_sdk_ver
+
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        testInstrumentationRunner instrumentation_runner
+
         vectorDrawables.useSupportLibrary true
     }
 
@@ -23,60 +27,42 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-        test.java.srcDirs += 'src/test/kotlin'
-        androidTest.java.srcDirs += 'src/androidTest/kotlin'
-    }
 }
 
-ext.support_version = '28.0.0'
-ext.dagger_version = '2.13'
-
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(path: ':domain')
-    implementation project(path: ':base')
-    implementation project(path: ':data')
+    implementation project_modules.domain
+    implementation project_modules.base
+    implementation project_modules.data
 
-    //kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.0"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.0"
+    implementation kotlin_libs.stdlib
+    implementation kotlin_libs.coroutines
+    implementation kotlin_libs.coroutines_android
 
-    //support
-    implementation "com.android.support:appcompat-v7:$support_version"
-    implementation "com.android.support:design:$support_version"
-    implementation "com.android.support:support-v4:$support_version"
-    implementation "com.android.support:preference-v7:$support_version"
-    implementation "com.android.support:recyclerview-v7:$support_version"
-    implementation "com.android.support:support-vector-drawable:$support_version"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation support_libs.compat
+    implementation support_libs.design
+    implementation support_libs.support
+    implementation support_libs.preference
+    implementation support_libs.recyclerview
+    implementation support_libs.vector
+    implementation support_libs.constraint
 
-    //room
-    implementation "android.arch.persistence.room:runtime:1.1.1"
-    implementation 'com.android.support:support-v4:28.0.0'
-    kapt "android.arch.persistence.room:compiler:1.1.1"
+    implementation db_libs.room
+    kapt db_libs.room_annotations
 
-    //di
-    compileOnly "javax.annotation:jsr250-api:1.0"
-    compileOnly "javax.inject:javax.inject:1"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    implementation "com.google.dagger:dagger:$dagger_version"
+    compileOnly di_libs.jsr250_annotations
+    compileOnly di_libs.inject_annotations
+    kapt di_libs.dagger_annotations
+    implementation di_libs.dagger
+    kapt di_libs.dagger_android_annotations
+    annotationProcessor di_libs.dagger_android_annotations
+    implementation di_libs.dagger_android
 
-    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
-    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    testImplementation test_libs.junit
+    testImplementation test_libs.mockito
+    testImplementation test_libs.mockito_kotlin
+    testImplementation test_libs.kotlin_junit
+    testImplementation test_libs.kotlin_test
 
-    //unit tests
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-core:2.8.9'
-    testImplementation 'com.nhaarman:mockito-kotlin:1.5.0'
-    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
-    testImplementation "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
-
-    //instrumented tests
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation instrumentation_test_libs.runner
+    androidTestImplementation instrumentation_test_libs.espresso
 }
