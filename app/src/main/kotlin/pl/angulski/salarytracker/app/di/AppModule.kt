@@ -5,7 +5,7 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import pl.angulski.salarytracker.app.App
-import pl.angulski.salarytracker.data.AppSqlDatabase
+import pl.angulski.salarytracker.salary.AppSqlDatabase
 import javax.inject.Singleton
 
 @Module

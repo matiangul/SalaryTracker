@@ -27,12 +27,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
 }
 
 dependencies {
     implementation project_modules.domain
     implementation project_modules.base
-    implementation project_modules.data
+    implementation project_modules.salary
 
     implementation kotlin_libs.stdlib
     implementation kotlin_libs.coroutines

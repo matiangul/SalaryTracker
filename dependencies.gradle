@@ -20,7 +20,7 @@ ext {
 
     project_modules = [
             base  : project(':base'),
-            data  : project(':data'),
+            salary: project(':salary'),
             domain: project(':domain')
     ]
 

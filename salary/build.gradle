@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion android_sdk_ver
@@ -10,7 +11,12 @@ android {
 
         testInstrumentationRunner instrumentation_runner
 
-        vectorDrawables.useSupportLibrary true
+        kapt {
+            arguments {
+                // thanks to that we have history of db schama in repository
+                arg("room.schemaLocation", "$projectDir/schemas".toString())
+            }
+        }
     }
 
     buildTypes {
@@ -35,14 +41,16 @@ dependencies {
     implementation kotlin_libs.coroutines_android
 
     implementation support_libs.compat
-    implementation support_libs.design
-    implementation support_libs.preference
+
+    implementation db_libs.room
+    kapt db_libs.room_annotations
 
     testImplementation test_libs.junit
     testImplementation test_libs.mockito
     testImplementation test_libs.mockito_kotlin
     testImplementation test_libs.kotlin_junit
     testImplementation test_libs.kotlin_test
+    testImplementation test_libs.room_test
 
     androidTestImplementation instrumentation_test_libs.runner
     androidTestImplementation instrumentation_test_libs.espresso
