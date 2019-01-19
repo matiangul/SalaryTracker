@@ -9,19 +9,15 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 
-/**
- * Created by Mateusz Angulski <mateusz.angulski@assertis.co.uk>
- */
 @RunWith(MockitoJUnitRunner::class)
 class AddSalaryTest {
-
-    @InjectMocks
-    lateinit var mInteractor: AddSalary
-
     @Mock
     lateinit var repository: SalaryRepository
     @Mock
     lateinit var presenter: AddSalaryPresenter
+
+    @InjectMocks
+    lateinit var mInteractor: AddSalary
 
     @Before
     fun setUpInteractorUnderTest() {

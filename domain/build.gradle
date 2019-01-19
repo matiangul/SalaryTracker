@@ -6,17 +6,11 @@ sourceSets {
     test.kotlin.srcDirs += 'src/test/kotlin'
 }
 
-kotlin {
-    experimental {
-        coroutines 'enable'
-    }
-}
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.0"
 
     compileOnly "javax.annotation:jsr250-api:1.0"
     compileOnly "javax.inject:javax.inject:1"

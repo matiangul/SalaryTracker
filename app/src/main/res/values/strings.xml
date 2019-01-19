@@ -5,4 +5,7 @@
     <string name="salary_add_btn">Add</string>
     <string name="salary_add_header">How much did you earn today?</string>
     <string name="settings_menu_title">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

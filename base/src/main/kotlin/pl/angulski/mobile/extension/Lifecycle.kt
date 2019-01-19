@@ -3,10 +3,11 @@ package pl.angulski.mobile.extension
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.OnLifecycleEvent
-import kotlinx.coroutines.experimental.Job
+import kotlinx.coroutines.*
 
-fun Lifecycle.job(): Job {
-    return object : Job by Job(), LifecycleObserver {
+@ExperimentalCoroutinesApi
+fun Lifecycle.scope(): CoroutineScope {
+    return object : CoroutineScope by MainScope(), LifecycleObserver {
 
         init {
             addObserver(this)

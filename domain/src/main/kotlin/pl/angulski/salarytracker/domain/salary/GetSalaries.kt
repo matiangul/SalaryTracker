@@ -1,10 +1,7 @@
 package pl.angulski.salarytracker.domain.salary
 
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.Job
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
-import kotlin.coroutines.experimental.CoroutineContext
+import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
 
 interface GetSalariesUseCase {
     fun execute()
@@ -14,12 +11,16 @@ class GetSalaries(
     private val repository: SalaryRepository,
     private val presenter: GetSalariesPresenter,
     private val presenterContext: CoroutineContext,
-    private val parentJob: Job? = null
+    private val parentScope: CoroutineScope
 ) : GetSalariesUseCase {
 
     override fun execute() {
-        val result = async(CommonPool, parent = parentJob) { repository.getAll() }
-        launch(presenterContext, parent = parentJob) { presenter.onSalariesGet(result.await()) }
+        parentScope.launch(context = presenterContext) {
+            val result = withContext(Dispatchers.Default) {
+                repository.getAll()
+            }
+            presenter.onSalariesGet(result)
+        }
     }
 }
 
